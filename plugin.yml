@@ -1,0 +1,20 @@
+name: MineSlots
+main: me.meiamsome.mineslots.MineSlots
+version: 1.1.1
+author: meiamsome
+depends:
+ iConomy
+permissions:
+ MS.create:
+  description: Allows users to create slot machines
+  default: op
+ MS.createAny:
+  description: Allows users to create slot machines for others and admin slots
+  default: op
+ MS.deleteAny:
+  description: Allows users to delete any slot machine
+  default: op
+commands:
+ slots:
+  description: slots controls
+depend: [Vault]

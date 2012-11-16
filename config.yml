@@ -1,0 +1,51 @@
+# MineSlots Configuration File.
+# More info can be found in the readme file.
+# 
+# Copyright meiamsome 2012
+global:
+#Boolean, Defines if reels are drawn one after another (true) or all at the same time (false)
+  progressive: true
+#Boolean, Defines if reels should be coloured (true) or not (false). Due to unkown reasons, this causes mis-alignment of the reels.
+  useColours: false
+#Double,  All stakes must be divisable by this amount. Incorrect values will be rounded.
+  stakeRound: 0.01
+#Double,  The default stake, if the stake line is left blank.
+  stakeDefault: 1.0
+#Integer, The amount of time between saves of Jackpot Information and HighScores in minutes
+  saveInterval: 15
+#Integer, The quantity of HighScores to be saved.
+  storedHighScores: 10
+#String,  The machine to default to for a [slots] only sign. CAREFUL: CHANGING THIS CAN HAVE BIG CONSEQUENCES. SEE README.
+  defaultMachine: 3R4S
+#Double,  The value that a player must win to trigger an alert. A negative value causes no alerts to be displayed
+  announce: 50.0
+##### XRYS Section, see Read Me for more details. ####
+  XRYS:
+#Boolean, Defines if the XRYS format should be allowed.
+    allow: true
+#Boolean, Allows a custom jackpot on the XRYS format.
+    allowCustomJackpot: false
+#Integer, The percent used to calculate the jackpot. Details on the method are in the Read Me.
+    percent: 90
+#Double,  The jackpot will be rounded down to the nearest multiple of this setting. (Unless it is below the setting, where no rounding will occur)
+    round: 10.0
+#Integer, When using Stake Reinvestment with only the + operator, this is the value selected.
+    jackAdd: 20
+#Integer, This is the maximum Stake Reinvestment allowed on XRYS+Z signs.
+    maxJackAdd: 25
+
+##### Machine Section, See Read Me for more details. #####
+machines:
+  ExampleMachine:
+    rolls: 3
+    sides: 4
+    jackpot: 15.0
+    allowCustomJackpot: true
+  ExampleMachineWithStakeReinvestment:
+    rolls: 3
+    sides: 4
+    jackpot: 15.0
+    jackAdd: 20
+    allowCustomJackpot: false
+  
+  
