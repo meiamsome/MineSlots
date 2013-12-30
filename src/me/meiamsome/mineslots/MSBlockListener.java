@@ -13,9 +13,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockBurnEvent;
-import org.bukkit.event.block.BlockPhysicsEvent;
+import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
@@ -27,13 +28,13 @@ public class MSBlockListener implements Listener {
 	public MSBlockListener(MineSlots MS) {
 		ms=MS;
 	}
-	/*@EventHandler
+	@EventHandler
 	public void onBlockDamage(BlockDamageEvent event){
 		if(event.isCancelled()) return;
 		if(event.getBlock().getState() instanceof Sign) {
 			event.setCancelled(ms.signClick(event.getPlayer(), (Sign)event.getBlock().getState(), Action.LEFT_CLICK_BLOCK));
 		}
-	}*/
+	}
 	public HashSet<Sign> getAttachedSigns(Block b, BlockFace bf) {
 		HashSet<Sign> signs = new HashSet<Sign>();
 		for(BlockFace face: new BlockFace[]{BlockFace.WEST,BlockFace.EAST,BlockFace.SOUTH,BlockFace.NORTH, BlockFace.SELF, BlockFace.UP}) {
@@ -96,7 +97,7 @@ public class MSBlockListener implements Listener {
 	public void onBlockBreakMonitor(BlockBreakEvent event) {
 		if(!event.isCancelled()) handleBreak(event.getBlock());
 	}
-
+/*
 	@EventHandler
 	public void onGravity(BlockPhysicsEvent event) {
 		try {
@@ -108,7 +109,7 @@ public class MSBlockListener implements Listener {
 	@EventHandler (priority=EventPriority.MONITOR)
 	public void onGravityMonitor(BlockPhysicsEvent event) {
 		if(!event.isCancelled()) handleBreak(event.getBlock());
-	}
+	}*/
 	@EventHandler
 	public void onPistonExtend(BlockPistonExtendEvent event) {
 		try {
@@ -138,11 +139,13 @@ public class MSBlockListener implements Listener {
 			}
 	}
 	
-	@EventHandler
+	@EventHandler (priority = EventPriority.HIGHEST)
 	public void onSignChange(SignChangeEvent event) {
 		if(event.getLine(0).toLowerCase().startsWith("[slots") && event.getLine(0).endsWith("]")) {
 			if(!event.getPlayer().hasPermission("MS.create")) {
 				event.setCancelled(true);
+				event.setLine(0, "[?]");
+				event.getBlock().breakNaturally();
 				event.getPlayer().sendMessage(ChatColor.RED+"You don't have the permission to do that!");
 				return;
 			}

@@ -72,7 +72,7 @@ public class Machine implements Runnable {
 		baseJack = jackpot = jack;
 	}
 	public void start() {
-		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(ms, this, 1);	
+		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(ms, this, ms.slotSpeed);	
 	}
 	@Override
 	public void run() {

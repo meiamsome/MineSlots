@@ -7,6 +7,8 @@ global:
   progressive: true
 #Boolean, Defines if reels should be coloured (true) or not (false). Due to unkown reasons, this causes mis-alignment of the reels.
   useColours: false
+#Integer, The amount of ticks for one slot tick
+  slotSpeed: 3
 #Double,  All stakes must be divisable by this amount. Incorrect values will be rounded.
   stakeRound: 0.01
 #Double,  The default stake, if the stake line is left blank.

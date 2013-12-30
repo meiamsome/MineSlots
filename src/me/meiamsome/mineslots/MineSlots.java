@@ -32,6 +32,7 @@ public class MineSlots extends JavaPlugin {
 	String[] highScoreNames;
 	
 	FileConfiguration conf;
+	public long slotSpeed;
 	@Override
 	public void onEnable() {
 		pm=getServer().getPluginManager();
@@ -46,6 +47,7 @@ public class MineSlots extends JavaPlugin {
 			double val = (Double)conf.get("global.stakeRound");
 			if(Math.round(val*100)!=val*100) getLogger().warning("Rounding to more than two decimal places may cause instability.");
 		} catch(Exception e) {}
+		slotSpeed = conf.getLong("global.slotSpeed", 1);
 		//Load Old Jackpots in
 		int loadErr = 0;
 		ArrayList<String> errors = new ArrayList<String>();
